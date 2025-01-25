@@ -99,7 +99,7 @@ namespace RIZZ {
         };
         virtual InputDevice GetInputDevice() const NOEXCEPT = 0;
 
-        enum ActionDevice
+        enum class ActionDevice
         {
             Release, Press, Repeat
         };    

@@ -14,4 +14,5 @@
 #include "core/layer_stack.h"
 
 #include "input/input_code.h"
-#include "rendering/open_gl/gl_window.h"
+#include "rendering/open_gl/window/gl_window.h"
+#include "rendering/open_gl/render/imgui_impl_opengl3.h"

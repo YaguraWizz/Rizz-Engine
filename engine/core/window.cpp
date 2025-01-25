@@ -1,6 +1,6 @@
 #include "typedefs.h"
 #include "window.h"
-#include "rendering/open_gl/gl_window.h"
+#include "rendering/open_gl/window/gl_window.h"
 
 
 namespace RIZZ {

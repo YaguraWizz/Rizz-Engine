@@ -54,19 +54,6 @@ namespace RIZZ {
 		double GetX() const { return m_X; }
 		double GetY() const { return m_Y; }
 
-		template<typename T>
-		T TryCastX() const {
-			static_assert(std::is_integral_v<T>, "Conversion error: T must be an integral type");
-			return static_cast<T>(m_X);
-		}
-
-		template<typename T>
-		T TryCastY() const {
-			static_assert(std::is_integral_v<T>, "Conversion error: T must be an integral type");
-			return static_cast<T>(m_Y);
-		}
-
-
 		Point& operator=(const Point& other) {
 			if (this != &other) {
 				m_X = other.m_X;
@@ -99,8 +86,8 @@ namespace RIZZ {
 		Size() NOEXCEPT : m_W(0), m_H(0) {}
 		Size(int w, int h) NOEXCEPT : m_W(w), m_H(h) {}
 
-		int Width() const { return m_W; }
-		int Height() const { return m_H; }
+		int GetWidth() const { return m_W; }
+		int GetHeight() const { return m_H; }
 
 		Size& operator=(const Size& other) {
 			if (this != &other) {
@@ -120,6 +107,13 @@ namespace RIZZ {
 
 		bool isEmpty() const { return m_W == 0 || m_H == 0; }
 	};
+
+
+
+	template<typename T, typename V>
+	constexpr inline T to_cast(V value) {
+		return static_cast<T>(value);
+	}
 
 
 	using String = std::string;

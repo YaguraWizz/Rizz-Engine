@@ -27,5 +27,6 @@ endfunction()
 add_and_link_library("spdlog" "third_party_libraries")
 add_and_link_library("glfw" "third_party_libraries")
 add_and_link_library("glad" "third_party_libraries")
+add_and_link_library("imgui" "third_party_libraries")
 
 message(STATUS "All third-party libraries have been processed.")

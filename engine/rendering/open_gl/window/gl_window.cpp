@@ -42,11 +42,11 @@ namespace RIZZ {
 		m_Data.m_ptr_this = this;
 
 		RZ_CORE_INFO("Window Location: ({0}, {1})", m_Data.m_Location.GetX(), m_Data.m_Location.GetX());
-		RZ_CORE_INFO("Create window {0} ({1},{2})", props.m_title, props.m_size.Width(), props.m_size.Height());
+		RZ_CORE_INFO("Create window {0} ({1},{2})", props.m_title, props.m_size.GetWidth(), props.m_size.GetHeight());
 
 		static GLFWContext s_GLFWContext = GLFWContext();
 
-		m_Window = glfwCreateWindow(m_Data.m_Size.Width(), m_Data.m_Size.Height(), m_Data.m_Title.c_str(), nullptr, nullptr);
+		m_Window = glfwCreateWindow(m_Data.m_Size.GetWidth(), m_Data.m_Size.GetHeight(), m_Data.m_Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
 
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
@@ -56,7 +56,7 @@ namespace RIZZ {
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		Subscribe();
 		SetVSync(m_Data.m_VSync);
-		glfwSetWindowPos(m_Window, m_Data.m_Location.TryCastX<int>(), m_Data.m_Location.TryCastY<int>());
+		glfwSetWindowPos(m_Window, RIZZ::to_cast<int>(m_Data.m_Location.GetX()), RIZZ::to_cast<int>(m_Data.m_Location.GetY()));
 	}
 
 
