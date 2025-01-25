@@ -25,40 +25,8 @@ add_subdirectory(third_party)
 # 3. Сборка игрового движка (Engine)
 # --------------------------
 
-message("------------- Project files generation for Engine -------------")
-
-# Собираем исходники и заголовочные файлы движка
-file(GLOB_RECURSE ENGINE_SOURCES engine/*.cpp)
-file(GLOB_RECURSE ENGINE_HEADERS engine/*.h)
-
-# Проверка наличия исходников для движка
-if(NOT ENGINE_SOURCES)
-    message(FATAL_ERROR "No source files found in the 'engine/' directory.")
-endif()
-
-# Создаем статическую библиотеку для движка
-add_library(Engine STATIC ${ENGINE_SOURCES} ${ENGINE_HEADERS})
-
-# Указываем каталоги для заголовочных файлов движка
-target_include_directories(Engine PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/engine)
-
-# Линкуем сторонние библиотеки с движком
-target_link_libraries(Engine PUBLIC third_party_libraries)
-
-# Определяем платформу и передаем соответствующие макросы
-if(WIN32)
-    # Для Windows
-    target_compile_definitions(Engine PRIVATE PLATFORM_WINDOWS)
-elseif(APPLE)
-    # Для macOS
-    target_compile_definitions(Engine PRIVATE PLATFORM_MACOS)
-elseif(UNIX)
-    # Для Linux или других Unix-подобных систем
-    target_compile_definitions(Engine PRIVATE PLATFORM_UNIX)
-else()
-    message(FATAL_ERROR "Unsupported platform")
-endif()
-
+# Добавляем движок
+add_subdirectory(engine)
 
 # --------------------------
 # 4. Сборка редактора (Editor)

@@ -2,15 +2,35 @@
 #include "RizzEngine.h"
 
 
+namespace Editor {
+
+    class UILeyer : public RIZZ::Layer {
+    public:
+        UILeyer() : Layer("UI Leyer") {}
+
+        void OnUpdate() override {
+            RZ_INFO("UI::OnUpdate");
+        }
+
+        void OnEvent(RIZZ::Window* sender, RIZZ::EventArgs& event) override {
+            RZ_INFO("{0}", event.ToString());
+        }
+    };
+
+}
+
+
+
+
+
 
 int main() {
-    RIZZ::Logger::Init();
+    using namespace RIZZ;
+    Application app{};
 
-    RZ_CORE_WARN("Initilized Log!");
-    RZ_INFO("Hello!");
+    app.PushLayer(new Editor::UILeyer());
 
+    app.Run();
 
-
-    std::cin.get();
     return 0;
 }

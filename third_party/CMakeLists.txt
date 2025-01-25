@@ -24,8 +24,8 @@ function(add_and_link_library library_dir target)
     message(STATUS "Library ${library_dir} setup completed successfully")
 endfunction()
 
-# Пример использования функции
 add_and_link_library("spdlog" "third_party_libraries")
-
+add_and_link_library("glfw" "third_party_libraries")
+add_and_link_library("glad" "third_party_libraries")
 
 message(STATUS "All third-party libraries have been processed.")

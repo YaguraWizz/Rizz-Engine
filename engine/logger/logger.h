@@ -1,5 +1,4 @@
 #pragma once
-#include <macro.h>
 #include <spdlog/spdlog.h>
 
 
@@ -7,15 +6,19 @@ namespace RIZZ {
 
 	class Logger {
 	public:
-		static void Init();
-
-		inline static std::shared_ptr<spdlog::logger>& GetCoreLogger() { return s_CoreLogger; }
-		inline static std::shared_ptr<spdlog::logger>& GetClinetLogger() { return s_ClinetLogger; }
+		static void Initialized();
+		inline static std::shared_ptr<spdlog::logger>& GetCoreLogger() { 
+			if (s_CoreLogger == nullptr) { Initialized(); }
+			return s_CoreLogger; 
+		}
+		inline static std::shared_ptr<spdlog::logger>& GetClinetLogger() { 
+			if (s_ClinetLogger == nullptr) { Initialized(); }
+			return s_ClinetLogger; 
+		}
 	private:
 		static std::shared_ptr<spdlog::logger> s_CoreLogger;
 		static std::shared_ptr<spdlog::logger> s_ClinetLogger;
 	};
-
 }
 
 #define RZ_CORE_TRACE(...)		::RIZZ::Logger::GetCoreLogger()->trace(__VA_ARGS__)
